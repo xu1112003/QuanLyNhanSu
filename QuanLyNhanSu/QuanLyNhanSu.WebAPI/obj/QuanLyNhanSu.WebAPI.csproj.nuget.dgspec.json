@@ -1,0 +1,321 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\QuanLyNhanSu.WebAPI.csproj": {}
+  },
+  "projects": {
+    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj",
+        "projectName": "QuanLyNhanSu.Business",
+        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj",
+        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
+        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
+                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj"
+              },
+              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.20, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj",
+        "projectName": "QuanLyNhanSu.Data",
+        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj",
+        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
+        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.20, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+        "projectName": "QuanLyNhanSu.Models",
+        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
+        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.20, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\QuanLyNhanSu.WebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\QuanLyNhanSu.WebAPI.csproj",
+        "projectName": "QuanLyNhanSu.WebAPI",
+        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\QuanLyNhanSu.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
+        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj": {
+                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj"
+              },
+              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
+                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj"
+              },
+              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.20, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
