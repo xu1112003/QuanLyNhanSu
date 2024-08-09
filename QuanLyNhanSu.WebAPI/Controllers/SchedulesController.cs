@@ -53,7 +53,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
                 MorningActivity = scheduleDTO.MorningActivity,
                 AfternoonActivity = scheduleDTO.AfternoonActivity,
                 EveningActivity = scheduleDTO.EveningActivity,
-                EmployeeId = scheduleDTO.EmployeeId
+                
             };
             await _scheduleService.AddScheduleAsync(schedule);
             return CreatedAtAction(nameof(GetSchedule), new { id = schedule.ScheduleId }, schedule);
@@ -70,7 +70,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             {
                 return NotFound();
             }
-            existingSchedule.ScheduleId = scheduleDTO.ScheduleId;
+            
             existingSchedule.WorkingDate = scheduleDTO.WorkingDate;
             existingSchedule.MorningActivity = scheduleDTO.MorningActivity;
             existingSchedule.AfternoonActivity = scheduleDTO.AfternoonActivity;
@@ -84,6 +84,23 @@ namespace QuanLyNhanSu.WebAPI.Controllers
         {
             await _scheduleService.DeleteScheduleAsync(id);
             return NoContent();
+        }
+        [HttpGet("filter")]
+        public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedulesByDateRange([FromQuery] DateTime startDate,[FromQuery] DateTime endDate)
+        {
+            if (startDate > endDate)
+            {
+                return BadRequest("StartDate must be earlier than or equal to EndDate.");
+            }
+
+            var schedules = await _scheduleService.GetSchedulesByDateRangeAsync(startDate, endDate);
+
+            if (schedules == null || !schedules.Any())
+            {
+                return NotFound("No schedules found for the specified date range.");
+            }
+
+            return Ok(schedules);
         }
     }
 }

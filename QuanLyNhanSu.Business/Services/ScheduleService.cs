@@ -41,6 +41,10 @@ namespace QuanLyNhanSu.Business.Services
         {
             await _scheduleRepository.UpdateAsync(schedule);
         }
+        public async Task<IEnumerable<Schedule>> GetSchedulesByDateRangeAsync(DateTime startDate, DateTime endDate)
+        {
+            return await _scheduleRepository.GetSchedulesByDateRangeAsync(startDate, endDate);
+        }
     }
 
     

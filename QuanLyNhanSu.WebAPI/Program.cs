@@ -19,6 +19,7 @@ namespace QuanLyNhanSu.WebAPI
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("QuanLyNhanSu.WebAPI")));
             // Add services to the container.
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(ScheduleRepository<>));
             builder.Services.AddScoped<IScheduleService, ScheduleService>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

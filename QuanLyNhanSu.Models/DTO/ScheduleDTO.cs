@@ -23,7 +23,7 @@ namespace QuanLyNhanSu.Models.DTO
   
         public string EveningActivity { get; set; }
 
-        public int? EmployeeId { get; set; }
+        
 
     }
 }

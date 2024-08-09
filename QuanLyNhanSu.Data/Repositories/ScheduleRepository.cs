@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace QuanLyNhanSu.Data.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class ScheduleRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly QLNSContext _context;
         private readonly DbSet<T> _dbSet;
-        public BaseRepository(QLNSContext context)
+        public ScheduleRepository(QLNSContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
@@ -50,10 +50,12 @@ namespace QuanLyNhanSu.Data.Repositories
                 await _context.SaveChangesAsync();
             }
         }
-
-        public Task<IEnumerable<Schedule>> GetSchedulesByDateRangeAsync(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<Schedule>> GetSchedulesByDateRangeAsync(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return await _context.Schedules
+                .Where(s => s.WorkingDate <= endDate && s.WorkingDate >= startDate)
+                .ToListAsync();
         }
+
     }
 }

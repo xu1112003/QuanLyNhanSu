@@ -14,6 +14,7 @@ namespace QuanLyNhanSu.Business.Interfaces
         Task AddScheduleAsync(Schedule schedule);
         Task UpdateScheduleAsync(Schedule schedule);
         Task DeleteScheduleAsync(int id);
+        Task<IEnumerable<Schedule>> GetSchedulesByDateRangeAsync(DateTime startDate, DateTime endDate);
 
     }
 }
