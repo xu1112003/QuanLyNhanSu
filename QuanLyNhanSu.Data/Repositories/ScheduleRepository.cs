@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyNhanSu.Data.Repositories
 {
-    public class ScheduleRepository<T> : IBaseRepository<T> where T : class
+    public class ScheduleRepository<T> : IScheduleRepository<T> where T : class
     {
         private readonly QLNSContext _context;
         private readonly DbSet<T> _dbSet;

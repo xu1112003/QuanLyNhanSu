@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace QuanLyNhanSu.Data.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class AccountRepository<T> : IAccountRepository<T> where T : class
     {
         private readonly QLNSContext _context;
         private readonly DbSet<T> _dbSet;
-        public BaseRepository(QLNSContext context)
+        public AccountRepository(QLNSContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();

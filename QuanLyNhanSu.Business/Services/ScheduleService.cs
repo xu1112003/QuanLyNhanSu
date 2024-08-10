@@ -11,8 +11,8 @@ namespace QuanLyNhanSu.Business.Services
 {
     public class ScheduleService : IScheduleService
     {
-        private IBaseRepository<Schedule> _scheduleRepository;
-        public ScheduleService(IBaseRepository<Schedule> scheduleRepository)
+        private IScheduleRepository<Schedule> _scheduleRepository;
+        public ScheduleService(IScheduleRepository<Schedule> scheduleRepository)
         {
             _scheduleRepository = scheduleRepository;
         }
