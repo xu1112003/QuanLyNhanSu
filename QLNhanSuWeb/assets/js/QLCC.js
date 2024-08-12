@@ -25,7 +25,7 @@ async function fetchCong() {
         console.log(congs);
         renderCong(); // Hiển thị danh sách congs
 
-        // initializeDataTable(); // Nếu cần
+        initializeDataTable();
     } catch (error) {
         console.error('Error fetching cong:', error);
     }
@@ -49,6 +49,24 @@ function addName() {
         };
     });
 }
+
+function initializeDataTable() {
+    const datatables = document.querySelectorAll('.datatable');
+    datatables.forEach(datatable => {
+      new simpleDatatables.DataTable(datatable, {
+        labels: {
+          placeholder: "Tìm kiếm...", // Placeholder cho ô tìm kiếm
+          perPage: "Số mục mỗi trang", // Dropdown số mục mỗi trang
+          noRows: "Không có dữ liệu", // Thông báo khi không có hàng dữ liệu
+          info: "Hiển thị {start} đến {end} của {rows} mục" // Thông tin về các mục hiển thị
+        },
+        columns: [
+          { select: 2, sortSequence: ["desc", "asc"] },
+          { select: 3, sortSequence: ["desc", "asc"] }
+        ]
+      });
+    });
+  }
 
 function renderCong() {
     var listChamCongBlock = document.querySelector('.list-chamCong tbody');
