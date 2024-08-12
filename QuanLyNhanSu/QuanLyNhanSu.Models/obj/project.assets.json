@@ -2973,11 +2973,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+      "projectUniqueName": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
       "projectName": "QuanLyNhanSu.Models",
-      "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+      "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
       "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-      "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\obj\\",
+      "outputPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",

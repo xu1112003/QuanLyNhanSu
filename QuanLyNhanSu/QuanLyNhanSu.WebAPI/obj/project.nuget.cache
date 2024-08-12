@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jGl8CBIiRonY7SP7Yh4R6DRZcOet7q7IxQ9KrQydqQ1InrDe2uCixKSivU0hS61dqFGOBKbc9hLjUnqh8M+/pA==",
+  "dgSpecHash": "1kM9BzrDtb9QzEWODkcVj2HZfMeyaymp5/qG2mUPc4mr+mN/4nVAbYv/csqVrsmWL+cMu9pTObsZq58k2uRNEg==",
   "success": true,
-  "projectFilePath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\QuanLyNhanSu.WebAPI.csproj",
+  "projectFilePath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.WebAPI\\QuanLyNhanSu.WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fpt\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\fpt\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lyxwCSNH7zunwPa9dcivLXwWHn9EEs0kGdPdjgfB2nD4zmiIPrQjZY+HAqQTTJrVtWubzDrXOQKmjWDXkhmcYA==",
+  "dgSpecHash": "lzv3Fklm7YZ0m14XqUTgTTtjELV4xEbI1q6FB+p/cYMyKnCoDnGthrMGZ8D7QYcsoewSzZ8KAi7pMZfeExs+Tw==",
   "success": true,
-  "projectFilePath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+  "projectFilePath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fpt\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\fpt\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

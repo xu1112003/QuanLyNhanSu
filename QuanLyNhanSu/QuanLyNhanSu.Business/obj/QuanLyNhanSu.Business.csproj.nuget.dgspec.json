@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj": {}
+    "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj": {}
   },
   "projects": {
-    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj": {
+    "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj",
+        "projectUniqueName": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj",
         "projectName": "QuanLyNhanSu.Business",
-        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj",
+        "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Business\\QuanLyNhanSu.Business.csproj",
         "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Business\\obj\\",
+        "outputPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Business\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
-                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj"
+              "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
+                "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj"
               },
-              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
-                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
+              "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+                "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
               }
             }
           }
@@ -82,14 +82,14 @@
         }
       }
     },
-    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
+    "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj",
+        "projectUniqueName": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj",
         "projectName": "QuanLyNhanSu.Data",
-        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj",
+        "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Data\\QuanLyNhanSu.Data.csproj",
         "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Data\\obj\\",
+        "outputPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -106,8 +106,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
-                "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
+              "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+                "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj"
               }
             }
           }
@@ -157,14 +157,14 @@
         }
       }
     },
-    "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
+    "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+        "projectUniqueName": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
         "projectName": "QuanLyNhanSu.Models",
-        "projectPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
+        "projectPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\QuanLyNhanSu.Models.csproj",
         "packagesPath": "C:\\Users\\fpt\\.nuget\\packages\\",
-        "outputPath": "D:\\ThucTap\\Mock_Proj\\QuanLyNhanSu\\QuanLyNhanSu\\QuanLyNhanSu.Models\\obj\\",
+        "outputPath": "D:\\ThucTap\\ProjNhom\\QuanLyNhanSu\\QuanLyNhanSu.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fpt\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <!-- Template Main JS File -->
+    <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
+    <script>
+
+        var itemId = "";
+        function getItemID(id) {
+            itemId = id;
+        }
+        var chamCongApi = 'http://localhost:3000/chamCong';
+        function start() {
+            getChamCong(renderChamCong);
+        }
+        start();
+
+        //function
+        function getChamCong(callback) {
+            fetch(chamCongApi)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(callback);
+        }
+        function renderChamCong(chamCongs) {
+            var listChamCongBlock = document.querySelector('#list-chamCong');
+            var htmls = chamCongs.map(function (chamCong) {
+                var mau = "";
+                if (chamCong.trangthai == "Muộn") {
+                    mau = "bg-warning";
+                }
+                else {
+                    mau = "bg-success";
+                }
+                return `
+                    <tr class="item-${chamCong.id}">
+                        <td>${chamCong.id}</th>
+                        <td>${chamCong.name}</td>
+                        <td><a href="#" class="text-primary">${chamCong.phongban}</a></td>
+                        <td>${chamCong.checkin}</td>
+                        <td>
+                            <span class="badge p-2 ${mau}">${chamCong.trangthai}</span>
+                           
+                        </td>
+                        <td style="width: 135px;">
+                            <span class="btn btn-success btn1" data-bs-toggle="modal"
+                            data-bs-target="#suaChamCong">Sửa</span> 
+                            <span onclick="deleteChamCong(${chamCong.id}); return false;"  class="btn btn-danger btn1">Xóa</span>
+                        </td>
+                    </tr>
+                `;
+            });
+            console.log(htmls);
+            listChamCongBlock.innerHTML = htmls.join('');
+        }
+        function deleteChamCong(id) {
+            var options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            };
+            fetch(chamCongApi + '/' + id, options)
+                .then(function (response) {
+                    response.json();
+                })
+                .then(function () {
+                    var chamCongItem = document.querySelector('.item-' + id);
+                    if (chamCongItem) {
+                        chamCongItem.remove();
+                    }
+                });
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <table class="table table-borderless datatable">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Họ tên</th>
+                <th scope="col">Phòng ban</th>
+                <th scope="col">Checkin</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id="list-chamCong">
+
+        </tbody>
+    </table>
+
+
+    <div class="modal fade" id="xoaChamCong">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Xóa chấm công</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button onclick="deleteChamCong(itemId)" type="button" class="btn btn-success"
+                        data-bs-dismiss="modal">
+                        Xóa
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="assets/js/main.js"></script> -->
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+    <!-- <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+
+</body>
+
+</html>

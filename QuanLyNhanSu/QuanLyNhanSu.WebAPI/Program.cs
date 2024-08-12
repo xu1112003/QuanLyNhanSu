@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using QuanLyNhanSu.Business.Interfaces;
 using QuanLyNhanSu.Business.Services;
 using QuanLyNhanSu.Data.Context;
@@ -14,6 +14,18 @@ namespace QuanLyNhanSu.WebAPI
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Thêm dịch vụ CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()  // Cho phép tất cả các địa chỉ
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
 
             builder.Services.AddDbContext<QLNSContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("QuanLyNhanSu.WebAPI")));
@@ -40,6 +52,8 @@ namespace QuanLyNhanSu.WebAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseCors("AllowAllOrigins");
 
 
             app.MapControllers();
