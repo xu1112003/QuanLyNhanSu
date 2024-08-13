@@ -33,6 +33,12 @@ namespace QuanLyNhanSu.WebAPI
             builder.Services.AddTransient<UserManager<User>, UserManager<User>>();
             builder.Services.AddTransient<SignInManager<User>, SignInManager<User>>();
             builder.Services.AddTransient<RoleManager<Role>, RoleManager<Role>>();
+            builder.Services.AddScoped<ISalaryRepository, SalaryRepository>();
+            builder.Services.AddScoped<ISalaryService, SalaryService>();
+            builder.Services.AddScoped<IHeSorepository, HeSoRepository>();
+            builder.Services.AddScoped<IHeSoService, HeSoService>();
+            builder.Services.AddScoped<IPhucLoiRepository, PhucLoiRepository>();
+            builder.Services.AddScoped<IPhucLoiService, PhucLoiService>();
             //builder.Services.AddScoped<IUserService, UserService>();
 
 
