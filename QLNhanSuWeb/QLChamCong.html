@@ -26,23 +26,7 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
   <script src="assets/js/QLCC.js"></script>
-  <script>
-    $(document).ready(() => {
 
-      $(".nav-link").click(function (event) {
-        // Xóa class 'collapsed' của nút đang được click
-        $(this).removeClass("collapsed");
-
-        // Thêm class 'collapsed' cho tất cả các nút khác
-        $(".nav-link").not(this).addClass("collapsed");
-
-        event.preventDefault();
-        var link = $(this).attr("href");
-        $("#content").load(link);
-
-      });
-    })
-  </script>
 </head>
 
 <body>
@@ -117,7 +101,7 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a id="btnTrangChu" class="nav-link" href="TrangChuAdmin.html">
+          <a id="btnTrangChu" class="nav-link collapsed" href="TrangChuAdmin.html">
             <i class="bi bi-house"></i>
             <span>Trang chủ</span>
           </a>
@@ -135,7 +119,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a id="btnQLChamCong" class="nav-link collapsed" href="QLChamCong.html">
+          <a id="btnQLChamCong" class="nav-link " href="QLChamCong.html">
             <i class="bi bi-calendar-check-fill"></i>
             <span>QL Chấm công</span>
           </a>
@@ -180,7 +164,7 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <!-- Quantity Card -->
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-12">
                             <div class="card info-card sales-card">
 
                                 <div class="filter">
@@ -205,7 +189,7 @@
                                             <i class="bi bi-person-fill"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>210</h6>
+                                            <h6 id="soLuong"></h6>
                                             <span class="text-muted small pt-2 ps-1">Nhân viên</span>
 
                                         </div>
@@ -216,7 +200,7 @@
                         </div><!-- End Sales Card -->
 
                         <!-- Checked Card -->
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-12">
                             <div class="card info-card revenue-card">
 
                                 <div class="filter">
@@ -242,9 +226,8 @@
                                             <i class="bi bi-calendar-check"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>168</h6>
-                                            <span class="text-success small pt-1 fw-bold">85%</span> <span
-                                                class="text-muted small pt-2 ps-1">checked</span>
+                                            <h6 id="daCham"></h6>
+                                            <span class="text-success small pt-1 fw-bold">Checked</span>
 
                                         </div>
                                     </div>
@@ -253,7 +236,7 @@
                             </div>
                         </div><!-- End Revenue Card -->
                         <!-- Late Card -->
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-12">
 
                             <div class="card info-card customers-card">
 
@@ -280,7 +263,7 @@
                                             <i class="bi bi-clock"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>2</h6>
+                                            <h6 id="diMuon"></h6>
                                             <span class=" text-warning small pt-2 ps-1">Late</span>
                                         </div>
                                     </div>
@@ -290,41 +273,6 @@
 
                         </div><!-- End Customers Card -->
 
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card info-card sales-card">
-
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                            class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Lọc</h6>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                                        <li><a class="dropdown-item" href="#">Tuần này</a></li>
-                                        <li><a class="dropdown-item" href="#">Tháng này</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="card-body">
-                                    <h5 class="card-title">Nghỉ phép <span>| Hôm nay</span></h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-calendar-x"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>1</h6>
-                                            <span class="text-danger small pt-1 fw-bold">Nghỉ có phép</span>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -449,6 +397,10 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <form class="form-inline">
+                          <div class="form-group mx-sm-3 mb-2">
+                            <label for="hoTenNV1" class="sr-only">Ngày chấm</label>
+                            <input type="date" class="form-control" id="ngaycham">
+                          </div>
                             <div class="form-group mx-sm-3 mb-2">
                               <label for="hoTenNV1" class="sr-only">Checkin</label>
                               <input type="text" class="form-control" id="checkin">

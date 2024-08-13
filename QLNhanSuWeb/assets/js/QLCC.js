@@ -26,6 +26,7 @@ async function fetchCong() {
         renderCong(); // Hiển thị danh sách congs
 
         initializeDataTable();
+        DisplayInforOnTop();
     } catch (error) {
         console.error('Error fetching cong:', error);
     }
@@ -41,7 +42,7 @@ function addName() {
         const employee = employeeMap[cong.employeeId] || {}; // Lấy thông tin nhân viên, hoặc một đối tượng rỗng nếu không tìm thấy
         return {
             ...cong,
-            employeeName: employee.name || 'Unknown', // Thay 'Unknown' nếu không có tên
+            employeeName: employee.name || 'Unknown',  
             employeeEmail: employee.email || 'Unknown',
             employeeGender: employee.gender || 'Unknown',
             employeeRole: employee.role || 'Unknown',
@@ -90,9 +91,9 @@ function renderCong() {
                     <td>${chamCong.checkOut}</td>
                     <td style="width: 135px;">
                         <span onclick="openEditModal(${chamCong.congId})" data-bs-toggle="modal"
-                            data-bs-target="#suaChamCong" class="btn btn-success btn1">Sửa</span>
+                            data-bs-target="#suaChamCong" class="btn btn-outline-success btn1">Sửa</span>
                         <span onclick="openDeleteModal(${chamCong.congId})" data-bs-toggle="modal"
-                            data-bs-target="#xoaChamCong" class="btn btn-danger btn1">Xóa</span>
+                            data-bs-target="#xoaChamCong" class="btn btn-outline-danger btn1">Xóa</span>
                     </td>
                 </tr>
             `;
@@ -125,7 +126,7 @@ function formatDate(dateString) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Tháng là 0-based
     const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return `${year}-${month}-${day}`;
 }
 
 let congToDelete;
@@ -144,7 +145,8 @@ function deleteCong() {
             return response.text();
         })
         .then(() => {
-            fetchCong();
+            // fetchCong();
+            location.reload();
         })
         .catch(error => console.error('Error deleting cong:', error));
 }
@@ -156,6 +158,7 @@ function openEditModal(id) {
   if (cong) {
       document.getElementById('checkin').value = cong.checkIn;
       document.getElementById('checkout').value = cong.checkOut;
+      document.getElementById('ngaycham').value = formatDate(cong.ngayCham);
   }
 }
 // {
@@ -170,6 +173,7 @@ function editCong() {
     // Lấy thông tin từ modal
     const checkIn = document.getElementById('checkin').value;
     const checkOut = document.getElementById('checkout').value;
+    const ngayCham = document.getElementById('ngaycham').value;
     let status = "";
 
     // Lấy thông tin cong hiện tại để không mất các thuộc tính khác
@@ -190,6 +194,7 @@ function editCong() {
             // Cập nhật thông tin cong với các giá trị mới
             const updatedCong = {
                 ...cong,
+                ngayCham: ngayCham,
                 checkIn: checkIn, // Chỉ cập nhật các thuộc tính cần thiết
                 checkOut: checkOut,
                 status: status
@@ -211,10 +216,27 @@ function editCong() {
             }
             if (response.status === 200 || response.status === 204) {
                 // Cập nhật danh sách chấm công
-                fetchCong(); 
+                // fetchCong(); 
+                location.reload();
             } else {
                 return response.json();
             }
         })
         .catch(error => console.error('Error updating cong:', error));
+}
+
+function DisplayInforOnTop(){
+    // Tạo đối tượng ngày hôm nay
+    let today = new Date();
+    let todayString = today.toISOString().split('T')[0];
+    console.log(todayString);
+    document.getElementById('ngaycham').max = todayString;
+    let soLuong = employees.length;
+    let todayCongs = congs.filter(cong => formatDate(cong.ngayCham) == todayString);
+    console.log(todayCongs);
+    let daCham = todayCongs.length;
+    let diMuon = soLuong - daCham;
+    document.getElementById('soLuong').textContent = soLuong;
+    document.getElementById('daCham').textContent = daCham;
+    document.getElementById('diMuon').textContent = diMuon;
 }

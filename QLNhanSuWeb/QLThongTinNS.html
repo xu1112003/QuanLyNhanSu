@@ -26,23 +26,7 @@
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
   <script src="assets/js/QLTTNS.js"></script>
-  <script>
-    $(document).ready(() => {
 
-      $(".nav-link").click(function (event) {
-        // Xóa class 'collapsed' của nút đang được click
-        $(this).removeClass("collapsed");
-
-        // Thêm class 'collapsed' cho tất cả các nút khác
-        $(".nav-link").not(this).addClass("collapsed");
-
-        event.preventDefault();
-        var link = $(this).attr("href");
-        $("#content").load(link);
-
-      });
-    })
-  </script>
 </head>
 
 <body>
@@ -117,7 +101,7 @@
     <aside id="sidebar" class="sidebar">
       <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-          <a id="btnTrangChu" class="nav-link" href="TrangChuAdmin.html">
+          <a id="btnTrangChu" class="nav-link collapsed" href="TrangChuAdmin.html">
             <i class="bi bi-house"></i>
             <span>Trang chủ</span>
           </a>
@@ -159,7 +143,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a id="btnCongTT" class="nav-link collapsed" href="QLThongTinNS.html">
+          <a id="btnCongTT" class="nav-link" href="QLThongTinNS.html">
             <i class="bi bi-xbox"></i>
             <span>Quản lý chi tiết thông tin nhân sự</span>
           </a>
@@ -225,49 +209,6 @@
                       <tbody>
                       </tbody>
                     </table>
-                    <div class="pagetitle m-2">
-                      <h1>Xét duyệt nghỉ bù, tăng ca</h1>
-                    </div>
-                    <div class="container mt-3">
-                      <form class="row g-3">
-                        <div class="col-md-6">
-                          <div class="pagetitle">
-                            <h2>NGHỈ BÙ</h2>
-                          </div>
-                          <table class="table table-borderless">
-                            <thead>
-                              <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">HỌ TÊN NV</th>
-                                <th scope="col">NGÀY BẮT ĐẦU</th>
-                                <th scope="col">NGÀY KẾT THÚC</th>
-                                <th scope="col">HOẠT ĐỘNG</th>
-                              </tr>
-                            </thead>
-                            <tbody id="list-nghiBu">
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="pagetitle">
-                            <h2>TĂNG CA</h2>
-                          </div>
-                          <table class="table table-borderless">
-                            <thead>
-                              <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">HỌ TÊN NV</th>
-                                <th scope="col">NGÀY BẮT ĐẦU</th>
-                                <th scope="col">NGÀY KẾT THÚC</th>
-                                <th scope="col">HOẠT ĐỘNG</th>
-                              </tr>
-                            </thead>
-                            <tbody id="list-tangCa">
-                            </tbody>
-                          </table>
-                        </div>
-                      </form>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -422,137 +363,6 @@
             </div>
           </div>
           <!-- End modal xóa nhân viên -->
-
-
-          <!-- The Modal duyệt nghỉ bù -->
-          <div class="modal" id="duyetNghiBu" data-backdrop="false"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 1100px;">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Duyệt nghỉ bù</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  Xác nhận duyệt nghỉ bù nhân viên này?
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="checkNghiBu(itemNB)">
-                    Duyệt
-                  </button>
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    Hủy
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <!-- End modal duyệt nghỉ bù -->
-
-          <!-- The Modal hủy nghỉ bù -->
-          <div class="modal" id="huyNghiBu" data-backdrop="false"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 1100px;">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Hủy nghỉ bù</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  Xác nhận hủy nghỉ bù nhân viên này?
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="deleteNghiBu(itemNB)">
-                    Hủy
-                  </button>
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    Đóng
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <!-- End modal hủy nghỉ bù -->
-
-
-
-          <!-- The Modal duyệt tăng ca -->
-          <div class="modal" id="duyetTangCa" data-backdrop="false"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 1100px;">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Duyệt tăng ca</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  Xác nhận duyệt tăng ca nhân viên này?
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="checkTangCa(itemTC)">
-                    Duyệt
-                  </button>
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    Hủy
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <!-- End modal duyệt tăng ca -->
-
-          <!-- The Modal hủy tăng ca -->
-          <div class="modal" id="huyTangCa" data-backdrop="false"
-            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 1100px;">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Hủy tăng ca</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  Xác nhận hủy tăng ca nhân viên này?
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="deleteTangCa(itemTC)">
-                    Hủy
-                  </button>
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    Đóng
-                  </button>
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <!-- End modal hủy tăng ca -->
         </section>
       </main>
       <!-- End #main -->

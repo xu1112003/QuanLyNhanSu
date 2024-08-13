@@ -24,24 +24,6 @@
   <link href="assets/css/main.css" rel="stylesheet">
   <!-- Template Main JS File -->
   <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
-  <script>
-    $(document).ready(() => {
-      $("#content").load("TrangChuAdmin.html");
-
-      $(".nav-link").click(function (event) {
-        // Xóa class 'collapsed' của nút đang được click
-        $(this).removeClass("collapsed");
-
-        // Thêm class 'collapsed' cho tất cả các nút khác
-        $(".nav-link").not(this).addClass("collapsed");
-
-        event.preventDefault();
-        var link = $(this).attr("href");
-        $("#content").load(link);
-        
-      });
-    })
-  </script>
 </head>
 
 <body>

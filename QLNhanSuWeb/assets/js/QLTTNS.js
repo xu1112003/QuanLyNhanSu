@@ -93,7 +93,8 @@ function addNhanVien() {
     .then(data => {
       console.log('Data received from API:', data);
       employees.push(data); // Thêm nhân viên mới vào danh sách
-      fetchEmployee(); 
+      // fetchEmployee(); 
+      location.reload();
       // Xóa dữ liệu form sau khi thêm thành công
       document.getElementById('hoTenNV').value = '';
       document.getElementById('emailNV').value = '';
@@ -120,7 +121,8 @@ function deleteEmployee() {
       return response.text();
   })
   .then(() => {
-      fetchEmployee();
+      // fetchEmployee();
+      location.reload();
   })
   .catch(error => console.error('Error deleting employee:', error));
 }
@@ -165,7 +167,8 @@ function editEmployee() {
       // Nếu API trả về mã trạng thái 200 OK hoặc 204 No Content, không cần đọc nội dung
       if (response.status === 200 || response.status === 204) {
           // Cập nhật danh sách nhân viên
-          fetchEmployee(); 
+          // fetchEmployee(); 
+          location.reload();
       } else {
           // Đọc và xử lý phản hồi nếu cần
           return response.json();
