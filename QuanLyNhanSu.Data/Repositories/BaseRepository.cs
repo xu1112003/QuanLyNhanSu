@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuanLyNhanSu.Data.Context;
 using QuanLyNhanSu.Data.Interfaces;
-using QuanLyNhanSu.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,5 +49,6 @@ namespace QuanLyNhanSu.Data.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
     }
 }

@@ -30,5 +30,5 @@ public partial class Schedule
 
     [ForeignKey("EmployeeId")]
     [InverseProperty("Schedules")]
-    public virtual Employee? Employee { get; set; }
+    public virtual Employee Employee { get; set; }
 }

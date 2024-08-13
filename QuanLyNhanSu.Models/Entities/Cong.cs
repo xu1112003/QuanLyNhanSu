@@ -26,7 +26,7 @@ public partial class Cong
     [Unicode(false)]
     public string Status { get; set; }
 
-    public int? EmployeeId { get; set; }
+    public int EmployeeId { get; set; }
 
     [ForeignKey("EmployeeId")]
     [InverseProperty("Congs")]

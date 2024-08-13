@@ -43,7 +43,7 @@ public partial class QLNSContext : DbContext
         {
             entity.HasKey(e => e.CongId).HasName("PK__Cong__BE52BA818D8BFB08");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.Congs).HasConstraintName("FK_EmployeeAttendance");
+            entity.HasOne(d => d.Employee).WithMany(p => p.Congs).HasConstraintName("FK_EmployeeAttendance").OnDelete(DeleteBehavior.Cascade);
         });
 
         modelBuilder.Entity<Employee>(entity =>
