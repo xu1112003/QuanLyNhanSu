@@ -39,13 +39,13 @@ public partial class Employee
     [Unicode(false)]
     public string Address { get; set; }
 
-    public int? AccountId { get; set; }
+    //public int? AccountId { get; set; }
 
     public int? PositionId { get; set; }
 
     public int? SalaryId { get; set; }
 
-    [ForeignKey("AccountId")]
+    //[ForeignKey("AccountId")]
     [InverseProperty("Employee")]
     public virtual Account Account { get; set; }
 

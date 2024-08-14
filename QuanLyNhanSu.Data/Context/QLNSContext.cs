@@ -37,6 +37,7 @@ public partial class QLNSContext : DbContext
         modelBuilder.Entity<Account>(entity =>
         {
             entity.HasKey(e => e.AccountId).HasName("PK__Account__349DA5A6E899A3D1");
+            entity.HasOne(d => d.Employee).WithOne(p => p.Account).HasConstraintName("FK_Account");
         });
 
         modelBuilder.Entity<Cong>(entity =>
@@ -50,7 +51,7 @@ public partial class QLNSContext : DbContext
         {
             entity.HasKey(e => e.EmployeeId).HasName("PK__Employee__7AD04F113C020FB1");
 
-            entity.HasOne(d => d.Account).WithOne(p => p.Employee).HasConstraintName("FK_Account");
+            //entity.HasOne(d => d.Account).WithOne(p => p.Employee).HasConstraintName("FK_Account");
 
             entity.HasOne(d => d.Position).WithMany(p => p.Employees).HasConstraintName("FK_Position");
 

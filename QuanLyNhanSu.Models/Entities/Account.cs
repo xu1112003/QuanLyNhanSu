@@ -40,7 +40,9 @@ public partial class Account
     [StringLength(255)]
     [Unicode(false)]
     public string Role { get; set; }
+    public int? EmployeeId { get; set; }
 
+    [ForeignKey("EmployeeId")]
     [InverseProperty("Account")]
     public virtual Employee Employee { get; set; }
 }
