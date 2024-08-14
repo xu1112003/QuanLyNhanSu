@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using QuanLyNhanSu.Business.Interfaces;
-using QuanLyNhanSu.Business.Services;
 using QuanLyNhanSu.Models.DTO;
 using QuanLyNhanSu.Models.Entities;
 
@@ -13,16 +11,21 @@ namespace QuanLyNhanSu.WebAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountService _accountService;
+
         public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
         }
+
+        // GET: api/Account
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Account>>> GetAccount()
+        public async Task<ActionResult<IEnumerable<Account>>> GetAccounts()
         {
-            var account = await _accountService.GetAccountsAsync();
-            return Ok(account);
+            var accounts = await _accountService.GetAllAccountsAsync();
+            return Ok(accounts);
         }
+
+        // GET: api/Account/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Account>> GetAccount(int id)
         {
@@ -33,59 +36,67 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             }
             return Ok(account);
         }
-        [HttpPost]
-        public async Task<ActionResult> CreateAccount([FromBody] AccountDTO accountDTO)
-        {
-            if (accountDTO == null)
-            {
-                return BadRequest();
-            }
 
-            // Kiểm tra xem EmployeeId có tồn tại trong bảng Employee không
-            //var employeeExists = await _context.Employees.AnyAsync(e => e.Id == scheduleDTO.EmployeeId);
-            //if (!employeeExists)
-            //{
-            //    return NotFound("Employee not found.");
-            //}
+        // POST: api/Account
+        [HttpPost]
+        public async Task<ActionResult<Account>> PostAccount([FromBody] AccountDTO accountDto)
+        {
             var account = new Account
             {
-                AccountId = accountDTO.AccountId,
-                Username = accountDTO.Username,
-                Email = accountDTO.Email,
-                Password = accountDTO.Password,
-                ConfirmPassword = accountDTO.ConfirmPassword
-
+                AccountId = accountDto.AccountId,
+                Username = accountDto.Username,
+                Email = accountDto.Email,
+                Password = accountDto.Password,
+                ConfirmPassword = accountDto.ConfirmPassword,
+                Role = accountDto.Role
+                // Employee is not included, so leave it as null or handle it as needed
             };
-            await _accountService.AddAccountAsync(account);
-            return CreatedAtAction(nameof(GetAccount), new { id = account.AccountId }, account);
+            var createdAccount = await _accountService.CreateAccountAsync(account);
+            return CreatedAtAction(nameof(GetAccount), new { id = createdAccount.AccountId }, createdAccount);
         }
+
+        // PUT: api/Account/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult<Account>> UpdateAccount(int id, AccountDTO accountDTO)
+        public async Task<IActionResult> PutAccount(int id, [FromBody] AccountDTO accountDto)
         {
-            if (id != accountDTO.AccountId)
+            var account = new Account
+            {
+                AccountId = id,
+                Username = accountDto.Username,
+                Email = accountDto.Email,
+                Password = accountDto.Password,
+                ConfirmPassword = accountDto.ConfirmPassword,
+                Role = accountDto.Role
+                // Employee is not included, so leave it as null or handle it as needed
+            };
+            try
+            {
+                await _accountService.UpdateAccountAsync(id, account);
+            }
+            catch (ArgumentException)
             {
                 return BadRequest();
             }
-            var existingAccount = await _accountService.GetAccountByIdAsync(id);
-            if (existingAccount == null)
+            catch (KeyNotFoundException)
             {
                 return NotFound();
             }
-
-            existingAccount.Username = accountDTO.Username;
-            existingAccount.Email = accountDTO.Email;
-            existingAccount.Password = accountDTO.Password;
-            existingAccount.ConfirmPassword = accountDTO.ConfirmPassword;
-
-            await _accountService.UpdateAccountAsync(existingAccount);
             return NoContent();
         }
+
+        // DELETE: api/Account/{id}
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAccount(int id)
+        public async Task<IActionResult> DeleteAccount(int id)
         {
-            await _accountService.DeleteAccountAsync(id);
+            try
+            {
+                await _accountService.DeleteAccountAsync(id);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
             return NoContent();
         }
-        
     }
 }
