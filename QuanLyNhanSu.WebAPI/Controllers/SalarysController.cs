@@ -131,7 +131,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             {
                 return new JsonResult(new { title = $"Money '{entity.SalaryType}' is invalid." });
             }
-            var Salary = _salaryService.GetByIdAsync(entityId).Result;
+            var Salary = await _salaryService.GetByIdAsync(entityId);
             Salary.SalaryType = entity.SalaryType;
             Salary.Money = Money;
             await _salaryService.UpdateAsync(Salary);
