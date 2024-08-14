@@ -9,10 +9,10 @@ namespace QuanLyNhanSu.Business.Interfaces
 {
     public interface IAccountService
     {
-        Task<IEnumerable<Account>> GetAccountsAsync();
+        Task<IEnumerable<Account>> GetAllAccountsAsync();
         Task<Account> GetAccountByIdAsync(int id);
-        Task AddAccountAsync(Account schedule);
-        Task UpdateAccountAsync(Account schedule);
+        Task<Account> CreateAccountAsync(Account account);
+        Task UpdateAccountAsync(int id, Account account);
         Task DeleteAccountAsync(int id);
     }
 }
