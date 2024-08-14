@@ -35,25 +35,25 @@ namespace QuanLyNhanSu.WebAPI.Controllers
         }
 
 
-        [HttpPost]
-        public virtual async Task<ActionResult> Post([FromBody] GetHeSoViewModel entity)
-        {
-            if (entity == null)
-            {
-                return new JsonResult(new { title = $"Request body cannot be null" });
-            }
-            if (!decimal.TryParse(entity.HeSo.ToString(), out decimal HeSo))
-            {
-                return new JsonResult(new { title = $"Money '{entity.Name}' is invalid." });
-            }
-            var Position = new Position
-            {
-                PositionName = entity.Name,
-                HeSo = entity.HeSo,
-            };
-            await _salaryService.AddAsync(Position);
-            return Ok();
-        }
+        //[HttpPost]
+        //public virtual async Task<ActionResult> Post([FromBody] GetHeSoViewModel entity)
+        //{
+        //    if (entity == null)
+        //    {
+        //        return new JsonResult(new { title = $"Request body cannot be null" });
+        //    }
+        //    if (!decimal.TryParse(entity.HeSo.ToString(), out decimal HeSo))
+        //    {
+        //        return new JsonResult(new { title = $"Money '{entity.Name}' is invalid." });
+        //    }
+        //    var Position = new Position
+        //    {
+        //        PositionName = entity.Name,
+        //        HeSo = entity.HeSo,
+        //    };
+        //    await _salaryService.AddAsync(Position);
+        //    return Ok();
+        //}
 
 
         [HttpGet("{entityId}")]
@@ -78,6 +78,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
         [HttpPut("{entityId}")]
         public async Task<IActionResult> Put(int entityId, [FromBody] GetHeSoViewModel entity)
         {
+            entity.Id = entityId;
             if (entity == null)
             {
                 return new JsonResult(new { title = $"Request body cannot be null" });
@@ -87,6 +88,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
                 return new JsonResult(new { title = $"Money '{entity.Name}' is invalid." });
             }
             var position = await _salaryService.GetByIdAsync(entity.Id);
+            position.PositionId = entity.Id;
             position.PositionName = entity.Name;
             position.HeSo = entity.HeSo;
             await _salaryService.UpdateAsync(position);

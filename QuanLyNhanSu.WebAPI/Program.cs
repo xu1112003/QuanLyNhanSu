@@ -39,6 +39,8 @@ namespace QuanLyNhanSu.WebAPI
             builder.Services.AddScoped<IHeSoService, HeSoService>();
             builder.Services.AddScoped<IPhucLoiRepository, PhucLoiRepository>();
             builder.Services.AddScoped<IPhucLoiService, PhucLoiService>();
+            builder.Services.AddScoped<IPositionService, PositionService>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
             //builder.Services.AddScoped<IUserService, UserService>();
 
 
