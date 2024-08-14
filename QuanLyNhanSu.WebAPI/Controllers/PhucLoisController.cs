@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuanLyNhanSu.Business.Interfaces;
 using QuanLyNhanSu.Data.Context;
+using QuanLyNhanSu.Models.DTO;
 using QuanLyNhanSu.Models.Entities;
+using QuanLyNhanSu.Models.Filters;
 using QuanLyNhanSu.Models.ViewModel;
 
 namespace QuanLyNhanSu.WebAPI.Controllers
@@ -23,6 +26,28 @@ namespace QuanLyNhanSu.WebAPI.Controllers
         {
             var entities = await _salaryService.GetAllAsync();
             return entities;
+        }
+        [HttpGet("Filter")]
+        public async Task<IActionResult> GetPhucLoiPagings([FromQuery] SalaryFilter departmentFilter)
+        {
+
+            var entities = _projectPart2Context.PhucLois.AsQueryable();//.Where(e => e.DepartmentName.Equals(departmentFilter.DepartmentName))
+            var paging = await entities.Skip((departmentFilter.Page - 1) * departmentFilter.PageSize).Take(departmentFilter.PageSize).ToListAsync();
+
+            var paging2 = new Pagging<PhucLoi>
+            {
+                totalRecord = await entities.CountAsync(),
+                data = paging,
+                pageIndex = departmentFilter.Page,
+                pageSize = departmentFilter.PageSize,
+                totalPages = (int)Math.Ceiling((double)entities.Count() / departmentFilter.PageSize)
+            };
+
+            if (paging2.data.Any() && departmentFilter.Page >= 0 && departmentFilter.PageSize >= 0)
+            {
+                return Ok(paging2);
+            }
+            else return NoContent();
         }
 
 
@@ -76,10 +101,6 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             if (!decimal.TryParse(entity.Money.ToString(), out decimal Money))
             {
                 return new JsonResult(new { title = $"Money '{entity.PhucLoiType}' is invalid." });
-            }
-            if (_projectPart2Context.PhucLois.Where(s => s.PhucLoiType.ToUpper().Equals(entity.PhucLoiType.ToUpper())).Any())
-            {
-                return new JsonResult(new { title = $"'{entity.PhucLoiType}' is already exists." });
             }
             var PhucLoi = _salaryService.GetByIdAsync(entityId).Result;
             PhucLoi.PhucLoiType = entity.PhucLoiType;
