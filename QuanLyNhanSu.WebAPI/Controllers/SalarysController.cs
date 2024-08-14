@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using QuanLyNhanSu.Business.Interfaces;
 using QuanLyNhanSu.Business.Services;
 using QuanLyNhanSu.Data.Context;
+using QuanLyNhanSu.Models.DTO;
 using QuanLyNhanSu.Models.Entities;
+using QuanLyNhanSu.Models.Filters;
 using QuanLyNhanSu.Models.ViewModel;
 
 namespace QuanLyNhanSu.WebAPI.Controllers
@@ -26,7 +29,28 @@ namespace QuanLyNhanSu.WebAPI.Controllers
                 var entities = await _salaryService.GetAllAsync();
                 return entities;
         }
+        [HttpGet("Filter")]
+        public async Task<IActionResult> GetSalaryPagings([FromQuery] SalaryFilter departmentFilter)
+        {
 
+            var entities = _projectPart2Context.Salaries.AsQueryable();//.Where(e => e.DepartmentName.Equals(departmentFilter.DepartmentName))
+            var paging = await entities.Skip((departmentFilter.Page - 1) * departmentFilter.PageSize).Take(departmentFilter.PageSize).ToListAsync();
+
+            var paging2 = new Pagging<Salary>
+            {
+                totalRecord = await entities.CountAsync(),
+                data = paging,
+                pageIndex = departmentFilter.Page,
+                pageSize = departmentFilter.PageSize,
+                totalPages = (int)Math.Ceiling((double)entities.Count() / departmentFilter.PageSize)
+            };
+
+            if (paging2.data.Any() && departmentFilter.Page >= 0 && departmentFilter.PageSize >= 0)
+            {
+                return Ok(paging2);
+            }
+            else return NoContent();
+        }
 
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] EditSalaryViewModel entity)
@@ -106,10 +130,6 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             if (!decimal.TryParse(entity.Money.ToString(), out decimal Money))
             {
                 return new JsonResult(new { title = $"Money '{entity.SalaryType}' is invalid." });
-            }
-            if (_projectPart2Context.Salaries.Where(s => s.SalaryType.ToUpper().Equals(entity.SalaryType.ToUpper())).Any())
-            {
-                return new JsonResult(new { title = $"'{entity.SalaryType}' is already exists." });
             }
             var Salary = _salaryService.GetByIdAsync(entityId).Result;
             Salary.SalaryType = entity.SalaryType;
