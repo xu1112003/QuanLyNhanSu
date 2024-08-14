@@ -102,7 +102,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             {
                 return new JsonResult(new { title = $"Money '{entity.PhucLoiType}' is invalid." });
             }
-            var PhucLoi = _salaryService.GetByIdAsync(entityId).Result;
+            var PhucLoi = await _salaryService.GetByIdAsync(entityId);
             PhucLoi.PhucLoiType = entity.PhucLoiType;
             PhucLoi.Money = entity.Money;
             await _salaryService.UpdateAsync(PhucLoi);

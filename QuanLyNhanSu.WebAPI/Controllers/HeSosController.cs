@@ -76,7 +76,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
 
 
         [HttpPut("{entityId}")]
-        public async Task<IActionResult> Put([FromBody] GetHeSoViewModel entity, int entityId)
+        public async Task<IActionResult> Put(int entityId, [FromBody] GetHeSoViewModel entity)
         {
             if (entity == null)
             {
@@ -86,7 +86,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             {
                 return new JsonResult(new { title = $"Money '{entity.Name}' is invalid." });
             }
-            var position = _salaryService.GetByIdAsync(entityId).Result;
+            var position = await _salaryService.GetByIdAsync(entity.Id);
             position.PositionName = entity.Name;
             position.HeSo = entity.HeSo;
             await _salaryService.UpdateAsync(position);
