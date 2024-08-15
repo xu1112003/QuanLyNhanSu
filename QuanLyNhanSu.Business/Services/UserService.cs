@@ -14,65 +14,36 @@ using System.Threading.Tasks;
 
 namespace QuanLyNhanSu.Business.Services
 {
-    public class UserService : IUserService
+    public class UserService
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<User> _roleManager;
-        private readonly IConfiguration _config;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserService(UserManager<User> userManager, IConfiguration config, SignInManager<User> signInManager, RoleManager<User> roleManager)
+        public UserService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _signInManager = signInManager;
-            _roleManager = roleManager;
-            _config = config;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
-        public async Task<string> Authencate(LoginRequest request)
+        public async Task CreateRolesAsync()
         {
-            var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) return null;
-
-            var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
-            if (!result.Succeeded)
+            if (!await _roleManager.RoleExistsAsync("Admin"))
             {
-                return null;
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
             }
-            var roles = await _userManager.GetRolesAsync(user);
-            var claims = new[]
+
+            if (!await _roleManager.RoleExistsAsync("User"))
             {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.GivenName,user.UserName),
-                new Claim(ClaimTypes.Role,string.Join(",", roles)),
-            };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(_config["Tokens:Issuer"],
-                _config["Tokens:Issuer"],
-                claims,
-                expires: DateTime.Now.AddHours(3),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+                await _roleManager.CreateAsync(new IdentityRole("User"));
+            }
         }
 
-        public async Task<bool> Register(RegisterRequest request)
+        public async Task AssignRoleAsync(ApplicationUser user, string role)
         {
-            var user = new User()
+            if (!await _userManager.IsInRoleAsync(user, role))
             {
-             
-                Email = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName
-            };
-            var result = await _userManager.CreateAsync(user, request.Password);
-            if (result.Succeeded)
-            {
-                return true;
+                await _userManager.AddToRoleAsync(user, role);
             }
-            return false;
         }
     }
 }

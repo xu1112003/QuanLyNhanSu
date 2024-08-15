@@ -35,5 +35,6 @@ namespace QuanLyNhanSu.Models.DTO
         [Display(Name = "Xác nhận mật khẩu")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
     }
 }
