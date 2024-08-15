@@ -12,12 +12,11 @@ using QuanLyNhanSu.Data.Repositories;
 using QuanLyNhanSu.Models.Entities;
 using System.Text;
 
-
 namespace QuanLyNhanSu.WebAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -126,6 +125,20 @@ namespace QuanLyNhanSu.WebAPI
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+            }
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var roles = new[] { "ADMIN", "USER" };
+
+                foreach (var role in roles)
+                {
+                    if (! await roleManager.RoleExistsAsync(role))
+                    {
+                        await roleManager.CreateAsync(new IdentityRole(role));
+                    }
+                }
             }
 
             app.UseHttpsRedirection();

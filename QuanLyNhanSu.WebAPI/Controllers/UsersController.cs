@@ -31,7 +31,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, "User");
+                await _userManager.AddToRoleAsync(user, "user");
                 return Ok(new { message = "User registered successfully!" });
             }
             return BadRequest(result.Errors);
@@ -51,22 +51,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
 
         private string GenerateJwtToken(ApplicationUser user)
         {
-            //var tokenHandler = new JwtSecurityTokenHandler();
-            //var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-            //var tokenDescriptor = new SecurityTokenDescriptor
-            //{
-            //    Subject = new ClaimsIdentity(new[]
-            //    {
-            //    new Claim(ClaimTypes.NameIdentifier, user.Id),
-            //    new Claim(ClaimTypes.Email, user.Email)
-            //}),
-            //    Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiresInMinutes"])),
-            //    Issuer = _configuration["Jwt:Issuer"],
-            //    Audience = _configuration["Jwt:Audience"],
-            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            //};
-            //var token = tokenHandler.CreateToken(tokenDescriptor);
-            //return tokenHandler.WriteToken(token);
+            
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
@@ -78,9 +63,9 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-            new Claim(ClaimTypes.NameIdentifier, user.Id),
-            new Claim(ClaimTypes.Email, user.Email)
-        }.Union(roles.Select(role => new Claim(ClaimTypes.Role, role)))),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(ClaimTypes.Email, user.Email)
+                }.Union(roles.Select(role => new Claim(ClaimTypes.Role, role)))),
                 Expires = DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiresInMinutes"])),
                 Issuer = _configuration["Jwt:Issuer"],
                 Audience = _configuration["Jwt:Audience"],
@@ -92,21 +77,7 @@ namespace QuanLyNhanSu.WebAPI.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet("admin-data")]
-        public IActionResult GetAdminData()
-        {
-            // Endpoint chỉ dành cho người dùng có vai trò Admin
-            return Ok(new { message = "This is admin data." });
-        }
-
-        [Authorize(Roles = "User")]
-        [HttpGet("user-data")]
-        public IActionResult GetUserData()
-        {
-            // Endpoint dành cho người dùng có vai trò User
-            return Ok(new { message = "This is user data." });
-        }
+        
 
     }
 }
