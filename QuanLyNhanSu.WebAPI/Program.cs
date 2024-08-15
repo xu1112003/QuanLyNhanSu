@@ -10,6 +10,7 @@ using QuanLyNhanSu.Data.Context;
 using QuanLyNhanSu.Data.Interfaces;
 using QuanLyNhanSu.Data.Repositories;
 using QuanLyNhanSu.Models.Entities;
+using QuanLyNhanSu.WebAPI.Controllers;
 using System.Text;
 
 namespace QuanLyNhanSu.WebAPI
@@ -139,7 +140,15 @@ namespace QuanLyNhanSu.WebAPI
                     {
                         await roleManager.CreateAsync(new IdentityRole(role));
                     }
+                    
                 }
+            }
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                await RoleInitializer.InitializeAsync(userManager, roleManager);
             }
 
             app.UseHttpsRedirection();
