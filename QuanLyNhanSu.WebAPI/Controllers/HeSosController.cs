@@ -11,15 +11,15 @@ namespace QuanLyNhanSu.WebAPI.Controllers
     [ApiController]
     public class HeSosController : ControllerBase
     {
-        private readonly IHeSoService _salaryService;
-        public HeSosController(IHeSoService salaryService)
+        private readonly IPositionService _salaryService;
+        public HeSosController(IPositionService salaryService)
         {
             _salaryService = salaryService;
         }
         [HttpGet]
         public async Task<IEnumerable<GetHeSoViewModel>> Get()
         {
-            var entities = _salaryService.GetAllAsync().Result;
+            var entities = _salaryService.GetAllPositionsAsync().Result;
             var heso = new List<GetHeSoViewModel>();
             foreach(var e in entities)
             {
@@ -33,8 +33,8 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             }
             return heso;
         }
-
-
+    
+    
         [HttpPost]
         public virtual async Task<ActionResult> Post([FromBody] GetHeSoViewModel entity)
         {
@@ -48,79 +48,81 @@ namespace QuanLyNhanSu.WebAPI.Controllers
             }
             var Position = new Position
             {
-                Id = entity.PositionId,
                 PositionName = entity.Name,
                 HeSo = entity.HeSo,
             };
-            await _salaryService.AddAsync(Position);
+            await _salaryService.AddPositionAsync(Position);
             return Ok();
         }
-
-
+    
+    
         [HttpGet("{entityId}")]
-        public async Task<GetHeSoViewModel> GetById(int entityId)
+        public async Task<ActionResult<Position>> GetById(int entityId)
         {
-            var entity = await _salaryService.GetByIdAsync(entityId);
-            if (entity != null)
+            var position = await _salaryService.GetPositionByIdAsync(entityId);
+            if (position == null)
             {
-                return new GetHeSoViewModel 
-                {
-                    Name = entity.PositionName,
-                    HeSo = entity.HeSo
-                };
+                return NotFound();
             }
-            else
-            {
-                return null;
-            }
-        }
-
-
-        [HttpPut("{entityId}")]
-        public async Task<IActionResult> Put(int entityId, [FromBody] GetHeSoViewModel entity)
-        {
-            if (entity == null)
-            {
-                return new JsonResult(new { title = $"Request body cannot be null" });
-            }
-            if (!decimal.TryParse(entity.HeSo.ToString(), out decimal HeSo))
-            {
-                return new JsonResult(new { title = $"Money '{entity.Name}' is invalid." });
-            }
-            var position = await _salaryService.GetByIdAsync(entity.Id);
-            position.PositionName = entity.Name;
-            position.HeSo = entity.HeSo;
-            await _salaryService.UpdateAsync(position);
+    
             return Ok(position);
-            //if (entity == null)
-            //{
-            //    return BadRequest("Invalid input data.");
-            //}
-
-            //try
-            //{
-            //    await _salaryService.UpdateAsync(new Position
-            //    {
-            //        PositionId = entityId,
-            //        PositionName = entity.Name,
-            //        HeSo = entity.HeSo
-            //    });
-
-            //    return NoContent();
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.LogError(ex, $"Error occurred while updating position coefficient with ID {entityId}.");
-            //    return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
-            //}
         }
-
-
-
+        //public async Task<GetHeSoViewModel> GetById(int entityId)
+        //{
+        //    var entity = await _salaryService.GetPositionByIdAsync(entityId);
+        //    if (entity != null)
+        //    {
+        //        return new GetHeSoViewModel 
+        //        {
+        //            Id = entity.PositionId,
+        //            Name = entity.PositionName,
+        //            HeSo = entity.HeSo
+        //        };
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+    
+    
+        [HttpPut("{entityId}")]
+        public async Task<ActionResult> Put(int entityId, PositionDTO positionDTO)
+        {
+            var existingPosition = await _salaryService.GetPositionByIdAsync(entityId);
+            if (existingPosition == null)
+            {
+                return NotFound();
+            }
+            existingPosition.PositionName = positionDTO.PositionName;
+            existingPosition.Description = positionDTO.Description;
+            existingPosition.Number = positionDTO.Number;
+            existingPosition.HeSo = positionDTO.HeSo;
+    
+            await _salaryService.UpdatePositionAsync(existingPosition);
+            return NoContent();
+        }
+        //public async Task<IActionResult> Put(int entityId, [FromBody] GetHeSoViewModel positionDTO)
+        //{
+        //    var existingPosition = await _salaryService.GetPositionByIdAsync(entityId);
+        //    if (existingPosition == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    existingPosition.PositionName = positionDTO.Name;
+        //    existingPosition.HeSo = positionDTO.HeSo;
+    
+        //    await _salaryService.UpdatePositionAsync(existingPosition);
+        //    return NoContent();
+    
+        //}
+    
+    
+    
         [HttpDelete("{entityId}")]
         public async Task<ActionResult> Delete(int entityId)
         {
-            await _salaryService.DeleteAsync(entityId);
+            await _salaryService.DeletePositionAsync(entityId);
             return Ok();
         }
     }
